@@ -20,7 +20,7 @@ module.exports = [
   {
     name: 'Dirichlet\'s Theorem',
     difficulty: 6,
-    veracity: false,
+    veracity: true,
     field: 'number theory'
   }
 ];
