@@ -95,5 +95,86 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
     });
 
+    test('adds a theorem to the database and returns it', async() => {
+      const expectation = {
+        id: 5,
+        name: 'Square Root of 2 is Irrational',
+        difficulty: 2,
+        veracity: true,
+        field: 'analysis',
+        owner_id: 1
+      };
+
+      const data = await fakeRequest(app)
+        .post('/theorems')
+        .send({
+          name: 'Square Root of 2 is Irrational',
+          difficulty: 2,
+          veracity: true,
+          field: 'analysis',
+          owner_id: 1
+        })
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      const allTheorems = await fakeRequest(app)
+        .get('/theorems')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+      expect(allTheorems.body.length).toEqual(5);
+    });
+
+    test('updates a theorem and returns it', async() => {
+      const expectation = {
+        id: 1,
+        name: 'Square Root of 2 is Irrational',
+        difficulty: 2,
+        veracity: true,
+        field: 'analysis',
+        owner_id: 1
+      };
+
+      const data = await fakeRequest(app)
+        .put('/theorems/1')
+        .send({
+          name: 'Square Root of 2 is Irrational',
+          difficulty: 2,
+          veracity: true,
+          field: 'analysis',
+          owner_id: 1
+        })
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      
+      expect(data.body).toEqual(expectation);
+    });
+
+    test('deletes a theorem and returns it', async() => {
+      const expectation = {
+        id: 1,
+        name: 'Square Root of 2 is Irrational',
+        difficulty: 2,
+        veracity: true,
+        field: 'analysis',
+        owner_id: 1
+      };
+
+      const deletedData = await fakeRequest(app)
+        .delete('/theorems/1')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      const allData = await fakeRequest(app)
+        .get('/theorems')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(deletedData.body).toEqual(expectation);
+      expect(allData.body.length).toEqual(4);
+    });
+
   });
 });
