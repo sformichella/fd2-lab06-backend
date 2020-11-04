@@ -1,11 +1,11 @@
 module.exports = [
   {
-    field: 'geometry'
+    name: 'geometry'
   },
   {
-    field: 'number theory'
+    name: 'number theory'
   },
   {
-    field: 'analysis'
+    name: 'analysis'
   }
 ];
