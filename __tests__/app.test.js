@@ -40,7 +40,6 @@ describe('app routes', () => {
           difficulty: 1,
           veracity: true,
           field: 'geometry',
-          owner_id: 1,
         },
         {
           id: 2,
@@ -48,7 +47,6 @@ describe('app routes', () => {
           difficulty: 5,
           veracity: true,
           field: 'number theory',
-          owner_id: 1,
         },
         {
           id: 3,
@@ -56,7 +54,6 @@ describe('app routes', () => {
           difficulty: 7,
           veracity: false,
           field: 'number theory',
-          owner_id: 1,
         },
         {
           id: 4,
@@ -64,7 +61,6 @@ describe('app routes', () => {
           difficulty: 6,
           veracity: true,
           field: 'number theory',
-          owner_id: 1,
         }
       ];
 
@@ -84,7 +80,6 @@ describe('app routes', () => {
         difficulty: 1,
         veracity: true,
         field: 'geometry',
-        owner_id: 1,
       };
 
       const data = await fakeRequest(app)
@@ -101,7 +96,7 @@ describe('app routes', () => {
         name: 'Square Root of 2 is Irrational',
         difficulty: 2,
         veracity: true,
-        field: 'analysis',
+        field_id: 3,
         owner_id: 1
       };
 
@@ -111,7 +106,7 @@ describe('app routes', () => {
           name: 'Square Root of 2 is Irrational',
           difficulty: 2,
           veracity: true,
-          field: 'analysis',
+          field_id: 3,
           owner_id: 1
         })
         .expect('Content-Type', /json/)
@@ -132,7 +127,7 @@ describe('app routes', () => {
         name: 'Square Root of 2 is Irrational',
         difficulty: 2,
         veracity: true,
-        field: 'analysis',
+        field_id: 3,
         owner_id: 1
       };
 
@@ -142,7 +137,7 @@ describe('app routes', () => {
           name: 'Square Root of 2 is Irrational',
           difficulty: 2,
           veracity: true,
-          field: 'analysis',
+          field_id: 3,
           owner_id: 1
         })
         .expect('Content-Type', /json/)
@@ -158,7 +153,7 @@ describe('app routes', () => {
         name: 'Square Root of 2 is Irrational',
         difficulty: 2,
         veracity: true,
-        field: 'analysis',
+        field_id: 3,
         owner_id: 1
       };
 
