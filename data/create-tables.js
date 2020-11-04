@@ -12,20 +12,24 @@ async function run() {
 
     // run a query to create tables
     await client.query(`
-                CREATE TABLE users (
-                    id SERIAL PRIMARY KEY,
-                    email VARCHAR(256) NOT NULL,
-                    hash VARCHAR(512) NOT NULL
-                );           
-                CREATE TABLE theorems (
-                    id SERIAL PRIMARY KEY NOT NULL,
-                    name VARCHAR(512) NOT NULL,
-                    difficulty INTEGER NOT NULL,
-                    veracity BOOLEAN NOT NULL,
-                    field VARCHAR(512) NOT NULL,
-                    owner_id INTEGER NOT NULL REFERENCES users(id)
-            );
-        `);
+      CREATE TABLE users (
+          id SERIAL PRIMARY KEY,
+          email VARCHAR(256) NOT NULL,
+          hash VARCHAR(512) NOT NULL
+      );
+      CREATE TABLE fields (
+        id SERIAL PRIMARY KEY NOT NULL
+        name VARCHAR(512) NOT NULL
+      );   
+      CREATE TABLE theorems (
+          id SERIAL PRIMARY KEY NOT NULL,
+          name VARCHAR(512) NOT NULL,
+          difficulty INTEGER NOT NULL,
+          veracity BOOLEAN NOT NULL,
+          field_id INTEGER NOT NULL REFERENCES fields(id),
+          owner_id INTEGER NOT NULL REFERENCES users(id)
+      );
+    `);
 
     console.log('create tables complete', getEmoji(), getEmoji(), getEmoji());
   }
